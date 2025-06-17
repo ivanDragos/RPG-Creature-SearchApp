@@ -40,44 +40,44 @@ searchBtn.addEventListener("click", (event) => {
             creatureId.textContent = "#" + data.id;
             weight.textContent = "Weight: " + data.weight;
             height.textContent = "Height: " + data.height;
-            if (data.special) {
-                specialName.textContent = data.special.name;
-                specialDescription.textContent = data.special.description;
+            if(data.special){
+            specialName.textContent = data.special.name;
+            specialDescription.textContent = data.special.description;
             }
 
             types.innerHTML = "";
 
 
             if (data.types && data.types.length > 0) {
-                data.types.forEach((typeObj) => {
-                    const typeSpan = document.createElement("span");
-                    typeSpan.textContent = typeObj.type.toUpperCase();
-                    typeSpan.classList.add("type");
-                    typeSpan.classList.add(typeObj.type.toLowerCase());
-                    types.appendChild(typeSpan);
-                });
-            }
-            if (data.stats && data.stats.length > 0) {
-                data.stats.forEach((statObj) => {
-                    const statName = statObj.name;
-                    const statValue = statObj.base_stat;
-                    if (statName === "hp") {
-                        hp.textContent = statValue;
-                    } else if (statName === "attack") {
-                        attack.textContent = statValue;
-                    } else if (statName === "defense") {
-                        defense.textContent = statValue;
-                    } else if (statName === "special-attack") {
-                        specialAttack.textContent = statValue;
-                    } else if (statName === "special-defense") {
-                        specialDefense.textContent = statValue;
-                    } else if (statName === "speed") {
-                        speed.textContent = statValue;
+                        data.types.forEach((typeObj) => {
+                            const typeSpan = document.createElement("span");
+                            typeSpan.textContent = typeObj.name.toUpperCase();
+                            typeSpan.classList.add("type");
+                            typeSpan.classList.add(typeObj.name.toLowerCase());
+                            types.appendChild(typeSpan);
+                        });
                     }
-                });
-            }
-        })
-        .catch(error => {
+            if (data.stats && data.stats.length > 0) {
+                        data.stats.forEach((statObj) => {
+                            const statName = statObj.name;
+                            const statValue = statObj.base_stat;
+                            if (statName === "hp") {
+                                hp.textContent = statValue;
+                            } else if (statName === "attack") {
+                                attack.textContent = statValue;
+                            } else if (statName === "defense") {
+                                defense.textContent = statValue;
+                            } else if (statName === "special-attack") {
+                                specialAttack.textContent = statValue;
+                            } else if (statName === "special-defense") {
+                                specialDefense.textContent = statValue;
+                            } else if (statName === "speed") {
+                                speed.textContent = statValue;
+                            }
+                        });
+                    }
+                })
+      .catch(error => {
             console.error("Error caught:", error);
             output.style.display = "none";
             alert("Creature not found");
